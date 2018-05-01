@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Container, Form } from 'semantic-ui-react'
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import AddUser  from '../graphql/mutations/AddUser';
-import uuidV4 from 'uuid/v4'
+import GetUserByEmail  from '../graphql/queries/GetUserByEmail';
+import { CognitoUserPool, CognitoUserAttribute } from 'amazon-cognito-identity-js';
+var poolData = {
+  UserPoolId : 'ap-south-1_c6DJjMfiT',
+  ClientId : '6ad236pr77ac0krk6au8i66euu'
+};
+var userPool = new CognitoUserPool(poolData);
 
 class SignUpForm extends Component {
 
   state ={
-    name:'',email:'',number:'',gender:'',password:'',cpassword:''
+    name:'',email:'',number:'',gender:'',password:'',cpassword:'',error:'',
   }
 
   handleChange = (event) => this.setState({[event.target.name]:event.target.value})
+
   handleSubmit (event){
     event.preventDefault();
     if (this.state.password !== this.state.cpassword) {
@@ -22,19 +30,41 @@ class SignUpForm extends Component {
     const number = this.state.number.trim();
     const gender = this.state.gender.trim();
     const password = this.state.password.trim();
-    const createdAt = new Date().getTime().toString();
-    const user = {
-      id: uuidV4(),
-      name,
-      email,
-      number,
-      gender,
-      password,
-      createdAt,
-      type:'admin'
-    }
-    this.props.AddUser(user);
-
+    var attributeList = [];
+    var dataEmail = {
+      Name : 'email',
+      Value : email
+    };
+    var dataPhoneNumber = {
+      Name : 'phone_number',
+      Value : `+91${number}`
+    };
+    var dataGender = {
+      Name : 'gender',
+      Value : gender
+    };
+    var dataName = {
+      Name : 'name',
+      Value : name
+    };
+    var attributeEmail = new CognitoUserAttribute(dataEmail);
+    var attributePhoneNumber = new CognitoUserAttribute(dataPhoneNumber);
+    var attributeGender = new CognitoUserAttribute(dataGender);
+    var attributeName = new CognitoUserAttribute(dataName);
+    attributeList.push(attributeEmail);
+    attributeList.push(attributePhoneNumber);
+    attributeList.push(attributeGender);
+    attributeList.push(attributeName);
+    let that = this;
+    userPool.signUp(email, password, attributeList, null, function(err, result){
+      if (err) {
+        let myerror= err.message.split(':')
+        that.setState({error:myerror[myerror.length-2]+ ' ' + myerror[myerror.length-1]})
+        return;
+      }
+      var cognitoUser = result.user;
+      that.props.history.push('/login');
+    });
   }
 
   render() {
@@ -44,7 +74,7 @@ class SignUpForm extends Component {
     ]
     return (
       <Container style={{width:400}}>
-        <h2>{this.state.error === '' ? '' : this.state.error}</h2>
+        <h3 style={{color:'red'}}>{this.state.error === '' ? '' : this.state.error}</h3>
         <Form onSubmit={this.handleSubmit.bind(this)}>
           <Form.Field>
             <label>Name</label>
@@ -74,15 +104,4 @@ class SignUpForm extends Component {
   }
 }
 
-export default graphql(AddUser,{
-  props:props=>({
-    AddUser: user => {
-      return props.mutate({
-        variables:user,
-        optimisticResponse: () => ({
-          result:user
-        })
-      }).then(res => console.log(res.data.result))
-    }
-  })
-})(SignUpForm);
+export default withRouter(compose(graphql(AddUser),graphql(GetUserByEmail))(SignUpForm))

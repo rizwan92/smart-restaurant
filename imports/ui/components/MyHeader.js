@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import {Container,Menu, Icon,  Modal} from 'semantic-ui-react'
+import {Container,Menu, Icon,  Modal,Form,Input,Button} from 'semantic-ui-react'
 class MyHeader extends Component {
   state={
     modalOpen:false,
@@ -24,8 +24,8 @@ class MyHeader extends Component {
 
   render() {
     return (
-      <div>
-        <Menu style={{height:'50px'}} >
+      <div style={{position:'fixed',top:0,left:0,right:0}}>
+        <Menu style={{height:'50px',margin:0,borderRadius:0}} >
           <Container>
             <img src="https://image.freepik.com/free-icon/twitter-logo_318-40459.jpg" style={{height:'auto',width:'50px'}} alt="icon" />
             <Menu.Item position='right'>
@@ -34,6 +34,16 @@ class MyHeader extends Component {
               <Menu.Item as='a' onClick={()=>this.setState({modalOpen:true,param:1})}>Products</Menu.Item>
             </Menu.Item>
           </Container>
+        </Menu>
+        <Menu style={{height:'50px',margin:0,borderRadius:0}} >
+          <Menu.Item >
+          </Menu.Item>
+          <Menu.Item position="right">
+            <Form.Field control={Input}  placeholder='First name' />
+            <Form.Field control={Input}  placeholder='Last name' />
+            <Form.Field  control={Button} content='Confirm'  />
+          </Menu.Item>
+
         </Menu>
 
         <Modal open={this.state.modalOpen}>

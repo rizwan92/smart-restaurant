@@ -1,0 +1,102 @@
+export default compose(graphql(AddUser,{
+  props:props=>({
+    AddUser: user => {
+      return props.mutate({
+        variables:user,
+        optimisticResponse: () => ({
+          result:user
+        })
+      }).then(res => console.log(res.data.result))
+    }
+  })
+}),
+graphql(GetUserByEmail,{
+  props: props =>({
+    getUserByEmail:email=> props.mutate({
+      variables:email,
+      optimisticResponse: ()=> {
+        return email
+      }
+    }).then(res=> console.log(res.data))
+  })
+})
+)(SignUpForm)
+
+
+ap-south-1_c6DJjMfiT
+  arn:aws:cognito-idp:ap-south-1:515047389730:userpool/ap-south-1_c6DJjMfiT
+ 6ad236pr77ac0krk6au8i66euu
+ ap-south-1:b794b34a-d0e1-4dfd-8e6e-6266850d5cce
+
+ arn:aws:iam::515047389730:role/service-role/smartrestaurant-SMS-Role
+
+
+
+
+ {
+   this.state.confirm ?
+     <div>
+       <Form onSubmit={this.confirmSubmit.bind(this)}>
+         {
+           this.state.email == '' ?
+             <Form.Field>
+               <label>Enter Your Email</label>
+               <input type="email" value={this.state.email} onChange={this.handleChange.bind(this)} name="email"  placeholder='Enter Email' required/>
+             </Form.Field>
+             :
+             null
+         }
+         <Form.Field>
+           <label>Verification Code</label>
+           <input type="text" value={this.state.code} onChange={this.handleChange.bind(this)} name="code"  placeholder='Enter Code' required/>
+         </Form.Field>
+         <Form.Button type="submit" primary>Verify</Form.Button>
+       </Form>
+       <h3 style={{color:'blue'}}>{this.state.resend === '' ? '' : this.state.resend}</h3>
+       <h3 style={{color:'blue'}}>{this.state.vrerr === '' ? '' : this.state.vrerr}</h3>
+       <Container textAlign='center'>  <a style={{cursor:'pointer'}} onClick={this.resendCode.bind(this)}> Resend code?</a> </Container>
+     </div>
+     :
+     <div>
+
+
+     confirmSubmit (event){
+       event.preventDefault();
+       this.setState({resend:''})
+       const email = this.state.email.trim();
+       const code = this.state.code.trim();
+       if (email === '') {
+         this.setState({resend:'',vrerr:'please enter your email'})
+       }
+       var userData = {
+         Username :email,
+         Pool :userPool
+       };
+       var cognitoUser = new CognitoUser(userData);
+       cognitoUser.confirmRegistration(code, true, function(err, result) {
+         if (err) {
+           console.log(err);
+           return;
+         }
+         this.setState({resend:result,vrerr:''})
+       });
+     }
+     resendCode(){
+       const email = this.state.email.trim();
+       if (email === '') {
+         this.setState({resend:'',vrerr:'please enter your email'})
+       }
+       var userData = {
+         Username :email,
+         Pool :userPool
+       };
+       var cognitoUser = new CognitoUser(userData);
+       cognitoUser.resendConfirmationCode(function(err, result) {
+         if (err) {
+           console.log(err);
+           return;
+         }
+         console.log('call result: ' + result);
+         this.setState({resend:result,vrerr:''})
+       });
+     }

@@ -1,0 +1,61 @@
+{
+    businessType:"hotel",
+    businessCategory:"registered",
+    intitutionName:"BabyLon Tower",
+    businessAddress:"Magneto mall near VIP Road",
+    businessState:"Chhattisgarh",
+    businessCity:"Raipur",
+    guestCapacity:200,
+    policeStation:{
+      policeStationId:"khdb"
+      policeStationName:"Telibandha"
+    },
+    incorpNumber:"LGKMI2673P",
+    incorpDoc:"http://google.com",
+    businessWebsite:"www.babylon.com",
+    businessLadline:["0771236197","0771237556"],
+    businessEmail:["mybusinessEmail@gmail.com","mybusinessEmail1@gmail.com"],
+    institutionManager:"Randhir Singhj",
+    institutionMangerContact:["9827866360","9827866361"],
+    businessLogo:"http://googel.com",
+    institutionOwnerContact:["9827866360","9827866361"],
+    approvedBy:"123456789",
+    institutionKYC:[
+        {
+            employeeId:"kdhdlknl1",
+            name:"sudha shamra",
+            contact:"6546554351",
+            role:"KYC",
+            password:"123456789",
+            status:1,
+
+        },
+         {
+            employeeId:"kdhdlknl",
+            name:"naman shamra",
+            contact:"6546554351",
+            role:"KYC",
+            password:"123456789",
+            status:1,
+
+        }
+    ],
+     createdAt:"12 MAR-2017 Tuesday",
+     paymentInfo:[
+          {
+            paymentStatus:1,
+            paymentAmount:"2000",
+            paymentDate:"dkjb",
+            paymentDetail:"",
+            paymentApprovedBy:"123456789",
+         },
+         {
+            paymentStatus:1,
+            paymentAmount:"2000",
+            paymentDate:"dkjb",
+            paymentDetail:"",
+            paymentApprovedBy:"123456789",
+         }
+        ]
+
+}

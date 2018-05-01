@@ -18,7 +18,6 @@ module.exports = {
   "rules": {
     "indent": ["error", 2],
     "quotes": ["error","single"],
-    "no-console": ["warn", { "allow": ["info", "error"] }],
      "react/prop-types": 0
   }
 };

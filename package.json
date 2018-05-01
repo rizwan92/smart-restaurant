@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.36",
+    "amazon-cognito-identity-js": "^2.0.3",
     "aws-appsync": "^1.0.14",
     "aws-appsync-react": "^1.0.6",
     "aws-sdk": "^2.219.1",
@@ -16,5 +17,16 @@
     "react-dom": "^16.3.0",
     "react-router-dom": "^4.2.2",
     "semantic-ui-react": "^0.79.0"
+  },
+  "devDependencies": {
+    "@meteorjs/eslint-config-meteor": "^1.0.5",
+    "babel-eslint": "^8.2.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-meteor": "^0.4.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-meteor": "^4.2.0",
+    "eslint-plugin-react": "^7.7.0"
   }
 }

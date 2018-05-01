@@ -1,0 +1,62 @@
+{
+  institutionID:"1",
+  employeeId:"123",
+  createdAt:"timestamp",
+  status:1,
+  customers:[
+    {
+      customerName:"adarsha wadi sharma",
+      customerContact:"65335",
+      customerAddress:"customer address goes here",
+      customerCity:"Dhamtari",
+      customerState:"Chhatisgarh",
+      stayPurpose:"my purpose",
+      stayTime:"3 days",
+      customerRefrence:{
+        meetPartyName:"saurabh Chawda",
+        meetPartyNumber:"789",
+        meetPartyAddress:"something somthing near by something",
+      }
+      customerAge:24,
+      idProof:[
+        {
+          idProofName:"adhar",
+          idProofNumber:"123546987",
+          idProofImage: "htt://www.idpath.com",
+          idStatus: 1,
+          idHash:"JHGJHGfhfytry897jyug",
+        },
+        {
+          idProofName:"ACS",
+          idProofNumber:"35435",
+          idProofImage: "htt://www.idpath.com",
+          idStatus: 1,
+          idHash:"JHGJHGfhfytry897jyug",
+        }
+      ]
+    },
+    {
+      name:"adarsha wadi sharma",
+      address:"customer address goes here",
+      customerCity:"Dhamtari",
+      customerState:"Chaatisgarh",
+      stayPurpose:"my purpose",
+      stayTime:"3 days",
+      customerRefrence:{
+        meetPartyName:"saurabh Chawda",
+        meetPartyNumber:"789",
+        meetPartyAddress:"something somthing near by something",
+      }
+      customerAge:24,
+      idProof:[
+        {
+          idProofName:"adhar",
+          idProofNumber:"123546987",
+          idProofImage: "htt://www.idpath.com",
+          idStatus: 1,
+          idHash:"JHGJHGfhfytry897jyug",
+        }
+      ]
+    },
+  ]
+}

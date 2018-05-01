@@ -1,0 +1,36 @@
+{
+  customerName:"adarsha wadi sharma",
+  customerContact:["65335","57685"],
+  customerAddress:"customer address goes here",
+  customerCity:"Dhamtari",
+  customerState:"Chaatisgarh",
+  customerAge:24,
+  idProof:[
+    {
+      idProofName:"adhar",
+      idProofNumber:"123546987",
+      idProofImage: "htt://www.idpath.com",
+      idStatus: 1,
+      idHash:"JHGJHGfhfytry897jyug",
+    },
+    {
+      idProofName:"ACS",
+      idProofNumber:"35435",
+      idProofImage: "htt://www.idpath.com",
+      idStatus: 1,
+      idHash:"JHGJHGfhfytry897jyug",
+    }
+  ],
+  cutomerFeedback:[
+    {
+      businessId:"",
+      feedback:"",
+    },
+    {
+      businessId:"",
+      feedback:"",
+    },
+
+  ],
+  complete:1
+}

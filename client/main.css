@@ -1,1 +1,32 @@
-/* CSS declarations go here */
+.product-tab-container{
+  display:flex;
+  flex:1;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-tab{
+  display:flex!important;
+  width: 20rem!important;
+  justify-content: space-between!important;
+  background-color: #efefef!important;
+  color: #000000!important;
+  margin: 5px!important;
+  align-items: center!important;
+  font-size: 1rem!important;
+  user-select: none!important;
+}
+
+@media only screen and (max-width: 600px) {
+  .product-tab{
+    display:flex!important;
+    width: 12rem!important;
+    justify-content: space-around!important;
+    background-color: #efefef!important;
+    color: #000000!important;
+    margin: 5px!important;
+    align-items: center!important;
+    font-size: 1rem!important;
+    user-select: none!important;
+  }
+}

@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { Container} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
-import LoginForm from '../components/LoginForm';
-class LoginPage extends Component {
+import SignUpForm from '../components/SignUpForm';
+class SignUpPage extends Component {
 
 
   render() {
     return (
       <div style={{height:'100vh',display:'flex',flexFlow:'column',justifyContent:'center'}}>
         <Container textAlign='center'  >
-          <h1>Login Form </h1>
+          <h1>SignUp Form </h1>
         </Container>
-        <LoginForm />
-        <Container textAlign='center'>  <Link to="/signup"> SignUp ?</Link> </Container>
+        <SignUpForm />
+        <Container textAlign='center'>  <Link to="/login"> Login ?</Link> </Container>
       </div>
     );
   }
 
 }
 
-export default LoginPage;
+export default SignUpPage;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MyHeader from '../components/MyHeader';
 import Footer from '../components/Footer';
-import Body from '../components/Body';
+import ProductTab from '../components/ProductTab';
 import { Segment } from 'semantic-ui-react'
 
 class MainPage extends Component {
@@ -17,8 +17,9 @@ class MainPage extends Component {
       {id:8,name:'product name7', price:100,quantity:0,},
       {id:9,name:'product name8', price:110,quantity:0,},
       {id:10,name:'product name9', price:120,quantity:0,},
-      {id:11,name:'product name10', price:130,quantity:0,},
-    ]
+      {id:10,name:'product name9', price:120,quantity:0,},
+      {id:10,name:'product name9', price:120,quantity:0,},
+    ],
   }
 
   updateQuantity(productid){
@@ -44,17 +45,26 @@ class MainPage extends Component {
     this.setState({products:newproducts})
   }
 
+  changeProductTabSize = (size) => this.setState({productTabsize:size})
+
   render() {
     return (
-      <Segment inverted textAlign='center' vertical style={{padding:0,height:'100vh'}}>
+      <Segment  textAlign='center' vertical style={{padding:0,minHeight:'100vh',paddingTop:'100px'}}>
         <MyHeader />
-        {
-          this.state.products.map((product,i)=>{
-            return(
-              <Body key={i} product={product} name="rizwan" updateQuantity={this.updateQuantity.bind(this)} reduceQuantity={this.reduceQuantity.bind(this)}/>
-            )
-          })
-        }
+        <div style={{display:'flex',flexWrap:'wrap'}}>
+          {
+            this.state.products.map((product,i)=>{
+              return(
+                <div className="product-tab-container" key={i} >
+                  <ProductTab   product={product} name="rizwan"
+                    updateQuantity={this.updateQuantity.bind(this)}
+                    reduceQuantity={this.reduceQuantity.bind(this)}
+                  />
+                </div>
+              )
+            })
+          }
+        </div>
         <Footer />
       </Segment>
     );
